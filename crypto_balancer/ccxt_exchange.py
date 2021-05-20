@@ -7,12 +7,13 @@ exchanges = ccxt.exchanges
 
 class CCXTExchange():
 
-    def __init__(self, name, currencies, api_key, api_secret):
+    def __init__(self, name, currencies, api_key, api_secret, api_password=""):
         self.name = name
         self.currencies = currencies
         self.exch = getattr(ccxt, name)({'nonce': ccxt.Exchange.milliseconds})
         self.exch.apiKey = api_key
         self.exch.secret = api_secret
+        self.exch.password = api_password
         self.exch.load_markets()
 
     @property
